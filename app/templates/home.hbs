@@ -1,0 +1,80 @@
+<style>
+.wrapper {
+  width: 100%;
+  background-color:#FFA62F;
+  overflow:scroll;
+}
+.content {
+  display:table;
+}
+.column {
+  display:table-cell;
+}
+table {
+  width: 200px;
+}
+
+</style>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+<h2 id="title" class="glyphicon glyphicon-search">Дугаар хайлт</h2>
+<hr>
+
+{{outlet}}
+
+<ul id="search-type">
+  <button type="button" class="btn btn-primary" {{action 'selectAll'}}><strong>Бүгдээс</strong></button>
+  <button type="button" class="btn btn-primary" {{action 'selectVIP'}}><img src="http://www.skytel.mn/images/main2/blogo/vip.png"></button>
+  <button type="button" class="btn btn-primary" {{action 'selectBusClass'}}><img src="http://www.skytel.mn/images/main2/blogo/businessclass.png"></button>
+  <button type="button" class="btn btn-primary" {{action 'selectNice'}}><img src="http://www.skytel.mn/images/main2/blogo/nice.png"></button>
+  <button type="button" class="btn btn-primary" {{action 'selectSkyCall'}}><img src="http://www.skytel.mn/images/main2/blogo/skycall.png"></button>
+  <button type="button" class="btn btn-primary" {{action 'selectD20'}}><img src="http://www.skytel.mn/images/main2/blogo/d20.png"></button>
+  <button type="button" class="btn btn-primary" {{action 'selectSkyPhone'}}><img src="http://www.skytel.mn/images/main2/blogo/skyphone.png"></button>
+</ul>
+<br>
+
+<p><strong>Хайх дугаар</strong></p>
+
+{{input type="number" value=theNumberInitials size="10"}}
+{{input type="number" value=theNumberEndings size="10"}}
+
+<button type="button" class="btn btn-primary" {{action 'search'}}><strong>Хайх</strong></button>
+<br>
+{{#if isClicked}}
+<div class="wrapper">
+  <div class="content">
+    <div class='column'>
+      <p><strong>Хайлтын үр дүн:</strong></p>
+      <table>
+        {{#each results as |item|}}
+        <tr>
+          <td>{{item.title}}</td>
+        </tr>
+        {{/each}}
+      </table> 
+    </div>
+
+    <div class='column'>
+      <p><strong>Таны хайлттай төстэй дугаарууд:</strong></p>
+      <table>
+        {{#each similiar as |item|}}
+        <tr>
+          <td>{{item.title}}</td>
+        </tr>
+        {{/each}}
+      </table>
+    </div>
+  </div>
+</div>
+{{else}}
+<p><strong>Та хайх гэсэн товчлуур дээр дарна уу.</strong></p>
+{{/if}}

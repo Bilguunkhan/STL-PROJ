@@ -1,0 +1,13 @@
+import Ember from 'ember';
+
+export default Ember.Controller.extend({
+    numberEndingsObserver: Ember.observes('theNumberEndings', function() {
+        console.log(this.get('theNumberEndings'));
+    }), 
+    isClicked: false,
+    actions: {
+        search: function() {
+            this.toggleProperty('isClicked');
+        }
+    }
+});
